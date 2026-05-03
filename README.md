@@ -1,66 +1,30 @@
 # Terraform x Google Cloud Learning Lab
 
-After passing Google Associate Cloud Engineer and Google Professional Cloud Architect, I started this repository to document my Terraform learning journey.
+This repository documents my Terraform learning journey after completing Google Associate Cloud Engineer and Google Professional Cloud Architect.
 
-The goal is not only to prepare for the Terraform Associate certification, but also to convert cloud architecture knowledge into practical, reproducible Infrastructure as Code.
+The goal is to convert Google Cloud architecture knowledge into practical, reproducible Infrastructure as Code using Terraform.
 
-## Objectives
+## Learning Objectives
 
-- Learn Terraform fundamentals
-- Practice Terraform with Google Cloud
-- Build reusable Infrastructure as Code examples
-- Understand Terraform state, providers, resources, variables, outputs, and modules
-- Document real setup issues and operational lessons
-- Build public artifacts for SRE / Cloud Engineering portfolio development
+- Understand Terraform CLI workflow
+- Use Terraform with Google Cloud
+- Provision GCP resources using Infrastructure as Code
+- Learn Terraform state management
+- Practice variables, outputs, modules, and remote state
+- Build public artifacts for SRE and Cloud Engineering portfolio development
 
-## Learning Roadmap
+## Labs
 
-### 00 - Setup
-
-- Install Terraform on macOS
-- Configure shell autocomplete
-- Document terminal errors and fixes
-
-### 01 - Terraform Basics
-
-- Terraform CLI workflow
-- Providers
-- Resources
-- Variables
-- Outputs
-- Locals
-- State basics
-
-### 02 - Google Cloud Provider
-
-- Configure the Google provider
-- Authenticate with Google Cloud
-- Create basic GCP resources using Terraform
-
-### 03 - Remote State
-
-- Store Terraform state in Google Cloud Storage
-- Understand state locking and versioning
-- Avoid local-only state for team workflows
-
-### 04 - GCP Networking
-
-- Create VPC
-- Create subnets
-- Create firewall rules
-- Understand public and private infrastructure boundaries
-
-### 05 - CI/CD
-
-- Run terraform fmt
-- Run terraform validate
-- Run terraform plan in CI
-- Apply infrastructure changes through a controlled workflow
+| No. | Lab                   | Description                                                        |
+| --- | --------------------- | ------------------------------------------------------------------ |
+| 00  | macOS Terraform Setup | Install Terraform and configure Zsh autocomplete                   |
+| 01  | First GCP VPC         | Provision, inspect, and destroy a Google Cloud VPC using Terraform |
 
 ## Published Articles
 
-1. Installing Terraform on macOS with Homebrew and Fixing Zsh Autocomplete Error
+1. [Installing Terraform on macOS with Homebrew and Fixing Zsh Autocomplete Error](https://dev.to/abrahamparn/installing-terraform-on-macos-with-homebrew-and-fixing-zsh-autocomplete-error-2gn9)
+2. [From PCA to Terraform: Provisioning My First GCP VPC with Infrastructure as Code](https://dev.to/abrahamparn/my-first-terraform-managed-gcp-resource-provider-vpc-plan-apply-and-state-57lj)
 
 ## Status
 
-This repository is a work in progress and will be updated as I continue learning Terraform with Google Cloud.
+Work in progress.

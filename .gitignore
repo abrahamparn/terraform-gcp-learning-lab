@@ -9,19 +9,23 @@ crash.*.log
 *.tfvars
 *.tfvars.json
 
+# Terraform lock file decision:
+# Keep .terraform.lock.hcl committed for provider consistency.
+# Do NOT ignore it.
+
 # Override files
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
 
-# CLI configuration
+# CLI config
 .terraformrc
 terraform.rc
-
-# macOS
-.DS_Store
 
 # Environment files
 .env
 .env.*
+
+# macOS
+.DS_Store
