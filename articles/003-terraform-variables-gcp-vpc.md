@@ -1,4 +1,4 @@
-# Terraform Variables: Removing Hardcoded Values from My First GCP VPC Configuration
+# Terraform Variables: Cleaning Up My First GCP VPC Configuration
 
 In my previous Terraform article, I created my first Terraform-managed Google Cloud resource: a simple VPC network.
 

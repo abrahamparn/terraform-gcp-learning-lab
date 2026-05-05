@@ -24,6 +24,8 @@ The goal is to convert Google Cloud architecture knowledge into practical, repro
 
 1. [Installing Terraform on macOS with Homebrew and Fixing Zsh Autocomplete Error](https://dev.to/abrahamparn/installing-terraform-on-macos-with-homebrew-and-fixing-zsh-autocomplete-error-2gn9)
 2. [From PCA to Terraform: Provisioning My First GCP VPC with Infrastructure as Code](https://dev.to/abrahamparn/my-first-terraform-managed-gcp-resource-provider-vpc-plan-apply-and-state-57lj)
+3. [Terraform Variables: Cleaning Up My First GCP VPC Configuration](https://dev.to/abrahamparn/terraform-variables-and-outputs-cleaning-up-my-first-gcp-vpc-configuration-2eh2/edit)
+4. [Terraform Outputs on GCP: Querying Useful Data from a VPC, Subnet, and VM](https://dev.to/abrahamparn/terraform-outputs-on-gcp-querying-useful-data-from-a-vpc-subnet-and-vm-3nek)
 
 ## Status
 
