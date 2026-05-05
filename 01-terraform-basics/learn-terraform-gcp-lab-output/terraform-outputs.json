@@ -1,0 +1,68 @@
+{
+  "lab_summary": {
+    "sensitive": false,
+    "type": [
+      "object",
+      {
+        "project": "string",
+        "region": "string",
+        "subnet_cidr": "string",
+        "subnet_name": "string",
+        "vm_internal_ip": "string",
+        "vm_name": "string",
+        "vpc_name": "string",
+        "zone": "string"
+      }
+    ],
+    "value": {
+      "project": "terraform-gcp-learning-lab",
+      "region": "us-central1",
+      "subnet_cidr": "10.10.0.0/24",
+      "subnet_name": "terraform-output-subnet",
+      "vm_internal_ip": "10.10.0.2",
+      "vm_name": "terraform-output-vm",
+      "vpc_name": "terraform-output-network",
+      "zone": "us-central1-c"
+    }
+  },
+  "subnet_cidr_range": {
+    "sensitive": false,
+    "type": "string",
+    "value": "10.10.0.0/24"
+  },
+  "subnet_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "terraform-output-subnet"
+  },
+  "vm_instance_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "terraform-output-vm"
+  },
+  "vm_instance_zone": {
+    "sensitive": false,
+    "type": "string",
+    "value": "us-central1-c"
+  },
+  "vm_internal_ip": {
+    "sensitive": false,
+    "type": "string",
+    "value": "10.10.0.2"
+  },
+  "vm_self_link": {
+    "sensitive": false,
+    "type": "string",
+    "value": "https://www.googleapis.com/compute/v1/projects/terraform-gcp-learning-lab/zones/us-central1-c/instances/terraform-output-vm"
+  },
+  "vpc_network_id": {
+    "sensitive": false,
+    "type": "string",
+    "value": "projects/terraform-gcp-learning-lab/global/networks/terraform-output-network"
+  },
+  "vpc_network_name": {
+    "sensitive": false,
+    "type": "string",
+    "value": "terraform-output-network"
+  }
+}
