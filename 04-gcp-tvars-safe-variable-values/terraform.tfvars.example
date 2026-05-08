@@ -1,0 +1,6 @@
+project           = "terraform-gcp-learning-lab"
+region            = "asia-southeast2"
+environment       = "dev"
+network_name      = "tfvars-network"
+subnet_name       = "tfvars-subnet"
+subnet_cidr_range = "10.30.0.0/24"
