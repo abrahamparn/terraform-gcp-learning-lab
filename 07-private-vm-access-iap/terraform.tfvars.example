@@ -1,0 +1,62 @@
+project     = "your-gcp-project-id"
+region      = "asia-southeast2"
+environment = "dev"
+
+admin_principal = "user:your-email@example.com"
+
+network_name = "iap-private-network"
+
+subnets = {
+  app = {
+    cidr_range = "10.60.1.0/24"
+  }
+
+  db = {
+    cidr_range = "10.60.2.0/24"
+  }
+}
+
+firewall_rules = {
+  allow-iap-ssh = {
+    description   = "Allow SSH through IAP only."
+    source_ranges = ["35.235.240.0/20"]
+    target_tags   = ["iap-ssh"]
+
+    allow = [
+      {
+        protocol = "tcp"
+        ports    = ["22"]
+      }
+    ]
+  }
+
+  allow-internal = {
+    description   = "Allow internal traffic between lab subnets."
+    source_ranges = ["10.60.0.0/16"]
+
+    allow = [
+      {
+        protocol = "tcp"
+        ports    = ["0-65535"]
+      },
+      {
+        protocol = "udp"
+        ports    = ["0-65535"]
+      },
+      {
+        protocol = "icmp"
+      }
+    ]
+  }
+}
+
+vm_service_account_id           = "iap-private-vm-sa"
+vm_service_account_display_name = "IAP Private VM Service Account"
+
+vm_name         = "iap-private-vm"
+vm_machine_type = "e2-micro"
+vm_zone         = "asia-southeast2-a"
+vm_subnet_key   = "app"
+vm_tags         = ["iap-ssh"]
+
+enable_oslogin = true
