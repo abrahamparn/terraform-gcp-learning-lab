@@ -37,6 +37,7 @@ resource "google_compute_health_check" "http" {
   healthy_threshold   = 2
   unhealthy_threshold = 3
 
+
   http_health_check {
     port         = var.app_port
     request_path = "/"
@@ -44,7 +45,8 @@ resource "google_compute_health_check" "http" {
 }
 
 module "mig" {
-  source = "./modules/gcp-mig"
+  source                = "./modules/gcp-mig"
+  service_account_email = module.service_account.email
 
   environment          = var.environment
   mig_name             = var.mig_name
@@ -71,4 +73,29 @@ module "http_lb" {
   health_check_self_link = google_compute_health_check.http.self_link
   app_port               = var.app_port
 
+}
+
+module "service_account" {
+  source = "./modules/gcp-service-account"
+
+  account_id   = "${var.environment}-${var.mig_service_account_id}"
+  display_name = "${var.environment}-${var.mig_service_account_display_name}"
+}
+
+resource "google_project_iam_member" "iap_tunnel_user" {
+  project = var.project
+  role    = var.tunnel_role
+  member  = var.admin_principal
+}
+
+resource "google_project_iam_member" "os_admin_login" {
+  project = var.project
+  role    = var.os_admin_login_role
+  member  = var.admin_principal
+}
+
+resource "google_service_account_iam_member" "vm_service_account_user" {
+  role               = var.service_account_user_role
+  member             = var.admin_principal
+  service_account_id = module.service_account.name
 }

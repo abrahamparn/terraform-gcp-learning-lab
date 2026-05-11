@@ -55,3 +55,8 @@ variable "health_check_self_link" {
   description = "Self-link of the health check used for autohealing."
   type        = string
 }
+
+variable "service_account_email" {
+  description = "Service account email attached to MIG instances."
+  type        = string
+}

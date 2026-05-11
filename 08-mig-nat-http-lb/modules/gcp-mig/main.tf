@@ -20,6 +20,12 @@ resource "google_compute_instance_template" "template" {
   lifecycle {
     create_before_destroy = true
   }
+
+
+  service_account {
+    email  = var.service_account_email
+    scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+  }
 }
 
 resource "google_compute_region_instance_group_manager" "mig" {
@@ -44,5 +50,7 @@ resource "google_compute_region_instance_group_manager" "mig" {
     health_check      = var.health_check_self_link
     initial_delay_sec = 120
   }
+
+
 
 }

@@ -76,7 +76,7 @@ variable "firewall_rules" {
     target_tags   = optional(list(string), [])
     allow = list(object({
       protocol = string
-      prots    = optional(list(string))
+      ports    = optional(list(string))
     }))
   }))
 
@@ -142,4 +142,48 @@ variable "app_port" {
   description = "Application port exposed by backend instances"
   type        = number
   default     = 80
+}
+
+variable "tunnel_role" {
+  description = "IAP Tunnel Role"
+  type        = string
+  default     = "roles/iap.tunnelResourceAccessor"
+}
+
+variable "os_admin_login_role" {
+  description = "The necessary iap for os admin login"
+  type        = string
+  default     = "roles/compute.osAdminLogin"
+}
+
+variable "service_account_user_role" {
+  description = "The service account of a user"
+  type        = string
+  default     = "roles/iam.serviceAccountUser"
+}
+
+variable "admin_principal" {
+  description = "IAM Principal allowed to access the private VM through IAP and OS Login Example: user:name@example.com"
+  type        = string
+  validation {
+    condition     = can(regex("^(user|group|serviceAccount):.+", var.admin_principal))
+    error_message = "admin_principal must start with user:, group;, or serviceAccount:"
+  }
+}
+
+variable "mig_service_account_id" {
+  description = "Account ID for the vm service account"
+  type        = string
+  default     = "iap-private-vm-sa"
+  validation {
+    condition     = can(regex("^[a-z]([-a-z0-9]*[a-z0-9])?$", var.mig_service_account_id))
+    error_message = "Service account ID must use lowercase letters, numbers, and hyphens. It must start with a letter and end with a letter or number"
+  }
+}
+
+
+variable "mig_service_account_display_name" {
+  description = "Display name for the VM service account"
+  type        = string
+  default     = "IAP Private VM service account"
 }
