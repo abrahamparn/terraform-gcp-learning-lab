@@ -24,11 +24,3 @@ resource "google_compute_subnetwork" "subnet" {
   ip_cidr_range = var.subnet_cidr_range
 }
 
-
-
-resource "google_compute_subnetwork" "subnet" {
-  name          = "${var.environment}-${var.subnet_name}-2"
-  region        = var.region
-  network       = google_compute_network.vpc_network.id
-  ip_cidr_range = var.subnet_cidr_range2
-}

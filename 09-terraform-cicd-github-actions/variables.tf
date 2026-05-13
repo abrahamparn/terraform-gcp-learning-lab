@@ -63,14 +63,3 @@ variable "subnet_cidr_range" {
     error_message = "subnet_cidr_range must be a valid CIDR block, for example 10.90.1.0/24."
   }
 }
-
-
-variable "subnet_cidr_range2" {
-  description = "CIDR range for the subent"
-  type        = string
-  default     = "10.90.2.0/24"
-  validation {
-    condition     = can(cidrhost(var.subnet_cidr_range, 0))
-    error_message = "subnet_cidr_range must be a valid CIDR block, for example 10.90.1.0/24."
-  }
-}
