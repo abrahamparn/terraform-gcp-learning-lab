@@ -42,24 +42,44 @@ variable "network_name" {
 }
 
 
-variable "subnet_name" {
-  description = "Base name of the subnet"
-  type        = string
-  default     = "cicd-subnet"
+variable "subnets" {
+  description = "Map of subnets to create inside the VPC."
 
-  validation {
-    condition = can(regex("^[a-z]([-a-z0-9]*[a-z0-9])?$", var.subnet_name))
+  type = map(object({
+    cidr_range = string
+    region     = optional(string)
+  }))
 
-    error_message = "Subnet name must use lowercase letters numebrs and hyphens"
+  default = {
+    app = {
+      cidr_range = "10.90.1.0/24"
+    }
+    db = {
+      cidr_range = "10.90.2.0/24"
+    }
   }
-}
 
-variable "subnet_cidr_range" {
-  description = "CIDR range for the subent"
-  type        = string
-  default     = "10.90.1.0/24"
   validation {
-    condition     = can(cidrhost(var.subnet_cidr_range, 0))
-    error_message = "subnet_cidr_range must be a valid CIDR block, for example 10.90.1.0/24."
+    condition = alltrue([
+      for subnet_key, subnet in var.subnets :
+      can(regex("^[a-z]([-a-z0-9]*[a-z0-9])?$", subnet_key))
+    ])
+    error_message = "Each subnet key must use lowercase letters, numbers, and hyphens."
+  }
+
+  validation {
+    condition = alltrue([
+      for subnet_key, subnet in var.subnets :
+      can(cidrhost(subnet.cidr_range, 0))
+    ])
+    error_message = "Each cidr_range must be a valid CIDR block, for example 10.90.1.0/24."
+  }
+
+  validation {
+    condition = alltrue([
+      for subnet_key, subnet in var.subnets :
+      subnet.region == null ? true : contains(["asia-southeast2", "asia-southeast1", "us-central1"], subnet.region)
+    ])
+    error_message = "If specified, each subnet region must be one of: asia-southeast2, asia-southeast1, or us-central1."
   }
 }
