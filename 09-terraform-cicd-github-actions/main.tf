@@ -17,9 +17,11 @@ resource "google_compute_network" "vpc_network" {
   auto_create_subnetworks = false
 }
 
-resource "google_compute_subnetwork" "subnet" {
-  name          = "${var.environment}-${var.subnet_name}"
-  region        = var.region
+resource "google_compute_subnetwork" "subnets" {
+  for_each = var.subnets
+
+  name          = "${var.environment}-${each.key}-subnet"
+  region        = coalesce(each.value.region, var.region)
   network       = google_compute_network.vpc_network.id
-  ip_cidr_range = var.subnet_cidr_range
+  ip_cidr_range = each.value.cidr_range
 }

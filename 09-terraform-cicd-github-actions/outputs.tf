@@ -8,25 +8,33 @@ output "network_id" {
   value       = google_compute_network.vpc_network.id
 }
 
-output "subnet_name" {
-  description = "The subnet name."
-  value       = google_compute_subnetwork.subnet.name
-}
+output "subnets" {
+  description = "Subnets created by this lab."
 
-output "subnet_cidr_range" {
-  description = "The subnet CIDR range."
-  value       = google_compute_subnetwork.subnet.ip_cidr_range
+  value = {
+    for subnet_key, subnet in google_compute_subnetwork.subnets :
+    subnet_key => {
+      name       = subnet.name
+      id         = subnet.id
+      region     = subnet.region
+      cidr_range = subnet.ip_cidr_range
+      self_link  = subnet.self_link
+    }
+  }
 }
 
 output "lab_summary" {
   description = "Summary of Lab 009."
 
   value = {
-    project     = var.project
-    environment = var.environment
-    region      = var.region
-    network     = google_compute_network.vpc_network.name
-    subnet      = google_compute_subnetwork.subnet.name
-    cidr        = google_compute_subnetwork.subnet.ip_cidr_range
+    project      = var.project
+    environment  = var.environment
+    region       = var.region
+    network      = google_compute_network.vpc_network.name
+    subnet_count = length(google_compute_subnetwork.subnets)
+    subnets = {
+      for subnet_key, subnet in google_compute_subnetwork.subnets :
+      subnet_key => subnet.ip_cidr_range
+    }
   }
 }

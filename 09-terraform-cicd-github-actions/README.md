@@ -31,7 +31,7 @@ terraform apply tfplan
 This lab creates a small GCP network stack:
 
 - custom VPC network
-- subnet
+- two regional subnets
 - remote Terraform state in Google Cloud Storage
 
 The infrastructure is intentionally simple because the main focus is the CI/CD workflow.
@@ -78,7 +78,7 @@ This lab creates:
 | Resource                             | Description        |
 | ------------------------------------ | ------------------ |
 | `google_compute_network.vpc_network` | Custom VPC network |
-| `google_compute_subnetwork.subnet`   | Regional subnet    |
+| `google_compute_subnetwork.subnets`  | Regional subnets   |
 
 ## Remote State
 
@@ -279,7 +279,7 @@ terraform plan \
 Expected plan:
 
 ```text
-Plan: 2 to add, 0 to change, 0 to destroy.
+Plan: 3 to add, 0 to change, 0 to destroy.
 ```
 
 ## Verify Resources
@@ -294,7 +294,7 @@ Check subnet:
 
 ```bash
 gcloud compute networks subnets list \
-  --filter="name=dev-cicd-subnet"
+  --filter="name~dev-.*-subnet"
 ```
 
 Check remote state:

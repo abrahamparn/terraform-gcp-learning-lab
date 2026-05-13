@@ -2,6 +2,12 @@ project           = "your-gcp-project-id"
 region            = "asia-southeast2"
 environment       = "dev"
 network_name      = "cicd-network"
-subnet_name       = "cicd-subnet"
-subnet_cidr_range = "10.90.1.0/24"
 
+subnets = {
+  app = {
+    cidr_range = "10.90.1.0/24"
+  }
+  db = {
+    cidr_range = "10.90.2.0/24"
+  }
+}
